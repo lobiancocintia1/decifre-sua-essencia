@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cíntia Lo Bianco">
+    <title>Jornada Interior - Danielle Chaves</title>
+    
+    <!-- Scripts Externos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lilas-escuro: #7E22CE;
+            --lilas-vibrante: #A855F7;
+            --lilas-claro: #F3E8FF;
+            --texto-escuro: #4C1D95; 
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--lilas-claro);
+            color: var(--texto-escuro);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .professional-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: white; 
+            padding: 2.5rem 1.5rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.1);
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        @media (min-width: 1024px) {
+            .professional-profile {
+                position: fixed;
+                top: 40px;
+                right: 120px;
+                margin: 0;
+                width: 320px;
+                z-index: 50;
+            }
+        }
+
+        .profile-img-container {
+            width: 210px; 
+            height: 210px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--lilas-vibrante);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 12px 24px rgba(126, 34, 206, 0.25);
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center; 
+            transform: scale(1.02); 
+            border-radius: 50%;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-name { font-weight: 800; font-size: 1.5rem; color: var(--lilas-escuro); margin-bottom: 0.25rem; display: block; }
+        .profile-tagline { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--lilas-vibrante); font-style: italic; margin-bottom: 0.5rem; display: block; }
+        .profile-bio { font-size: 1rem; opacity: 0.9; line-height: 1.5; display: block; }
+        .profile-handle { margin-top: 1rem; font-size: 0.9rem; font-weight: 700; color: var(--lilas-vibrante); display: block; }
+
+        .main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-wrapper { 
+                padding-right: 480px; 
+                justify-content: flex-start;
+                padding-left: 8%;
+            }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 20px 40px rgba(126, 34, 206, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--lilas-vibrante), var(--lilas-escuro));
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .option-btn {
+            border: 1px solid #E9D5FF;
+            transition: all 0.2s ease;
+            text-align: left;
+            padding: 1.25rem;
+            border-radius: 1.5rem;
+            background: white;
+        }
+
+        .option-btn:hover { border-color: var(--lilas-vibrante); background: #FAF5FF; }
+
+        .homework-box { 
+            background: #fdfaff; 
+            padding: 2rem; 
+            border-radius: 1.5rem; 
+            border: 1px solid #E9D5FF;
+            border-left: 6px solid var(--lilas-vibrante); 
+            margin-top: 2rem; 
+        }
+        
+        #capture-area { position: absolute; left: -9999px; width: 800px; padding: 60px; background: white; }
+    </style>
+</head>
+<body>
+
+    <aside class="professional-profile">
+        <div class="profile-img-container">
+            <img src="daniellechavespsicoterapeuta.jpeg" alt="Danielle Chaves" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Danielle+Chaves&background=A855F7&color=fff&size=512'">
+        </div>
+        <h2 class="profile-name">Danielle Chaves</h2>
+        <span class="profile-tagline">Saúde Mental e Integrativa</span>
+        <p class="profile-bio">Psicoterapeuta e Psicanalista Clínica</p>
+        <p class="profile-bio">Homeopata e Naturopata</p>
+        <span class="profile-handle">@daniellechaves.terapeutaepsi</span>
+    </aside>
+
+    <div class="main-wrapper">
+        <main class="w-full max-w-2xl">
+            
+            <!-- Início -->
+            <section id="start-screen" class="glass rounded-[3rem] p-10 md:p-16 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-[#4C1D95] font-serif italic">Decifre a sua Essência</h1>
+                <p class="text-lg md:text-xl mb-10 opacity-80 leading-relaxed">Descubra o seu padrão comportamental predominante e receba um plano de ação terapêutico personalizado e profundo.</p>
+                <button onclick="quiz.start()" class="btn-primary px-12 py-5 rounded-full text-lg font-bold uppercase tracking-wider">Iniciar Jornada</button>
+            </section>
+
+            <!-- Quiz -->
+            <section id="quiz-screen" class="hidden glass rounded-[3rem] p-8 md:p-12">
+                <div class="mb-8">
+                    <div class="flex justify-between items-end mb-3">
+                        <span id="progress-text" class="text-xs font-bold text-purple-500 uppercase">Questão 01/30</span>
+                        <span id="progress-percent" class="text-2xl font-light text-purple-900">0%</span>
+                    </div>
+                    <div class="w-full h-2 bg-purple-100 rounded-full">
+                        <div id="progress-bar" class="h-full bg-purple-500 rounded-full transition-all duration-500 w-0"></div>
+                    </div>
+                </div>
+                <h2 id="question-title" class="text-2xl md:text-3xl font-bold mb-8 text-[#2D064A]">...</h2>
+                <div id="options-container" class="flex flex-col gap-4"></div>
+            </section>
+
+            <!-- Resultado -->
+            <section id="result-screen" class="hidden animate-in fade-in duration-1000 pb-20">
+                <div class="glass rounded-[3rem] p-10 mb-8">
+                    <header class="text-center mb-10">
+                        <p class="text-xs font-bold tracking-widest text-purple-400 uppercase">Análise Psicoterapêutica</p>
+                        <h3 id="result-name" class="text-4xl md:text-5xl font-serif italic text-purple-900 mt-2">...</h3>
+                    </header>
+                    <div id="result-text" class="text-lg leading-relaxed text-[#4C1D95] space-y-4"></div>
+                    <div id="result-homework" class="homework-box"></div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="quiz.download()" class="btn-primary py-6 rounded-3xl font-bold text-xl">Baixar Plano Completo</button>
+                    <button onclick="location.reload()" class="bg-white text-purple-600 border border-purple-200 py-6 rounded-3xl font-bold text-xl">Refazer Teste</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Captura -->
+    <div id="capture-area">
+        <div style="text-align: center; border-bottom: 2px solid #F3E8FF; padding-bottom: 30px; margin-bottom: 30px;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #4C1D95; margin: 0;" id="cap-name"></h1>
+            <p style="color: #A855F7; text-transform: uppercase; letter-spacing: 4px; font-weight: 800; font-size: 14px;">Análise Detalhada por Danielle Chaves</p>
+        </div>
+        <div id="cap-content" style="font-size: 16px; color: #4C1D95; line-height: 1.5;"></div>
+    </div>
+
+    <script>
+        const quiz = {
+            step: 0,
+            scores: { A: 0, B: 0, C: 0, D: 0 },
+            
+            questions: [
+                { q: "Quando se depara com um conflito emocional inesperado, qual é a sua reação imediata?", o: { A: "Tento analisar racionalmente os factos para neutralizar a dor.", B: "Busco alguém em quem confio para dividir o peso do que sinto.", C: "Foco no que precisa ser feito agora para resolver o problema.", D: "Recolho-me para o silêncio para processar a profundidade da ferida." } },
+                { q: "Qual o seu papel inconsciente num grupo de amigos ou família?", o: { A: "O mentor: aquele que traz clareza e soluções lógicas.", B: "O pacificador: aquele que garante que todos estejam bem e unidos.", C: "O motor: aquele que motiva e faz as coisas acontecerem.", D: "O observador: aquele que lê o que ninguém está a dizer em voz alta." } },
+                { q: "O silêncio absoluto para si representa:", o: { A: "Um momento oportuno para organizar pensamentos.", B: "Uma ausência que pode gerar ansiedade ou sensação de solidão.", C: "Um luxo raro que serve para recarregar energias para o agir.", D: "O espaço sagrado onde a minha essência conversa comigo." } },
+                { q: "Qual destas ideias mais o(a) assombra no fim do dia?", o: { A: "Ter sido ineficiente ou irracional nas minhas decisões.", B: "Sentir que dececionei ou me distanciei de quem amo.", C: "Não ter avançado ou conquistado nada de relevante.", D: "Ter vivido um dia superficial, sem propósito real." } },
+                { q: "Como lida com a vulnerabilidade alheia?", o: { A: "Ofereço conselhos práticos e estratégias de superação.", B: "Acolho fisicamente e emocionalmente, sentindo a dor do outro.", C: "Respeito, mas tento incentivar a pessoa a reagir logo.", D: "Sinto uma conexão profunda e silenciosa com a humanidade do outro." } },
+                { q: "No amor, o que é inegociável para si?", o: { A: "O respeito ao meu espaço intelectual e autonomia.", B: "A presença constante, o carinho e a validação afetiva.", C: "A parceria em projetos de vida e o crescimento mútuo.", D: "A profundidade da alma e a honestidade emocional nua." } },
+                { q: "Qual a sua relação com o passado?", o: { A: "Um banco de dados de aprendizagens e erros a não repetir.", B: "Um álbum de saudades e conexões que me moldaram.", C: "Uma instrução que já subi e que não deve atrasar o meu futuro.", D: "Uma raiz profunda que continua a pulsar e a explicar quem sou." } },
+                { q: "Perante uma injustiça, o seu primeiro impulso é:", o: { A: "Debater e apontar as falhas lógicas do sistema.", B: "Proteger as vítimas e buscar reparação humana.", C: "Atuar diretamente para mudar a situação de forma prática.", D: "Refletir sobre as raízes sombrias da maldade humana." } },
+                { q: "O que mais procura num ambiente de trabalho?", o: { A: "Ordem, meritocracia e clareza de processos.", B: "Harmonia, colaboração e um clima acolhedor.", C: "Desafios constantes e poder de decisão.", D: "Significado, propósito e alinhamento de valores." } },
+                { q: "Como reage a críticas?", o: { A: "Analiso se são verdadeiras; se não forem, ignoro-as friamente.", B: "Sinto-me pessoalmente ferido(a) e questiono se sou amado(a).", C: "Vejo como um obstáculo a ser superado ou uma arma para crescer.", D: "Mergulho em autorreflexão para entender de onde a crítica vem." } },
+                { q: "Qual a sua fuga favorita quando a vida pesa?", o: { A: "Estudar, ler ou mergulhar num hobby técnico.", B: "Conversar por horas com alguém querido ou buscar afeto.", C: "Exercícios físicos intensos ou novos projetos de trabalho.", D: "Arte, música, meditação ou isolamento criativo." } },
+                { q: "Sente-se mais vivo(a) quando:", o: { A: "Um plano complexo que desenhei funciona perfeitamente.", B: "Sinto que sou importante e amado(a) pelas pessoas ao redor.", C: "Supero um limite pessoal e alcanço um objetivo difícil.", D: "Tenho um 'insight' profundo sobre o sentido da existência." } },
+                { q: "Qual é a sua 'Sombra' mais recorrente?", o: { A: "A arrogância intelectual ou o distanciamento afetivo.", B: "A dependência emocional ou o medo excessivo do abandono.", C: "A impaciência agressiva ou o vício em trabalho.", D: "A melancolia paralisante ou o excesso de idealismo." } },
+                { q: "Como toma decisões importantes?", o: { A: "Crio listas de prós e contras e analiso probabilidades.", B: "Penso em como isso afetará as pessoas que me cercam.", C: "Sigo o meu instinto de execução e decido rapidamente.", D: "Espero a intuição amadurecer no meu íntimo até sentir que é o caminho." } },
+                { q: "Qual é o seu conceito de liberdade?", o: { A: "Não depender do julgamento alheio e ter autonomia mental.", B: "Sentir-se seguro(a) para ser quem é nas suas relações.", C: "Ter os recursos e o poder para moldar o meu próprio destino.", D: "Estar em paz com as contradições da minha própria alma." } },
+                { q: "Se pudesse mudar algo em si, seria:", o: { A: "Ter mais facilidade para expressar emoções sem filtrá-las.", B: "Ser menos afetado(a) pelo que os outros pensam ou sentem.", C: "Conseguir relaxar e parar de produzir o tempo todo.", D: "Conseguir ser mais prático(a) e menos perdido(a) em pensamentos." } },
+                { q: "Como lida com a autoridade?", o: { A: "Questiono a competência antes de aceitar a liderança.", B: "Tento ser prestativo(a) para manter o bom relacionamento.", C: "Respeito se for eficiente, caso contrário, tento liderar.", D: "Mantenho distância e busco o meu próprio caminho interno." } },
+                { q: "O que é 'sucesso' para si?", o: { A: "Tornar-me uma referência em conhecimento e lucidez.", B: "Construir uma família sólida e laços de amizade eternos.", C: "Conquistar reconhecimento, independência e impacto real.", D: "Viver em total coerência com a sua verdade interior." } },
+                { q: "Qual a sua reação ao tédio?", o: { A: "Busco imediatamente algo novo para aprender ou resolver.", B: "Sinto um vazio e busco companhia ou distração afetiva.", C: "Fico inquieto(a) e começo a planejar a próxima ação.", D: "Aproveito para observar os meus pensamentos e sonhar acordado(a)." } },
+                { q: "Como quer ser lembrado(a)?", o: { A: "Como alguém brilhante que trouxe ordem ao caos.", B: "Como alguém generoso(a) que curou e acolheu muitos corações.", C: "Como alguém forte que venceu desafios e deixou um legado.", D: "Como alguém autêntico(a) que tocou a essência das coisas." } },
+                { q: "Perante um erro cometido por si, qual o sentimento?", o: { A: "Frustração por ter falhado logicamente ou no planeamento.", B: "Culpa por ter possivelmente magoado alguém no processo.", C: "Raiva por ter perdido tempo ou atrasado o progresso.", D: "Curiosidade dolorosa sobre o que esse erro revela sobre mim." } },
+                { q: "A sua espiritualidade ou filosofia de vida é focada em:", o: { A: "Princípios éticos claros e busca pela verdade lógica.", B: "Amor ao próximo, serviço e conexão com o coletivo.", C: "Força de vontade, superação e manifestação de poder.", D: "Mistério, transcendência e conexão com o invisível." } },
+                { q: "Qual o seu maior talento natural?", o: { A: "A capacidade de sintetizar informações complexas.", B: "A facilidade de fazer as pessoas sentirem-se seguras.", C: "A coragem de tomar iniciativa onde outros hesitam.", D: "A perceção aguçada de significados ocultos." } },
+                { q: "Como lida com grandes mudanças?", o: { A: "Mapeio o novo cenário e estudo como me adaptar.", B: "Busco apoio emocional para enfrentar a transição.", C: "Encaro como uma oportunidade de expansão e conquista.", D: "Sinto o impacto profundo e espero a poeira baixar internamente." } },
+                { q: "A sua maior queixa sobre o mundo moderno é:", o: { A: "A falta de lógica, critério e inteligência nas discussões.", B: "A frieza nas relações e a falta de empatia real.", C: "A lentidão dos processos e a falta de ambição das pessoas.", D: "A superficialidade absurda e o esquecimento do que é sagrado." } },
+                { q: "Qual animal melhor representa a sua força interior?", o: { A: "A Coruja: sabedoria, observação e precisão.", B: "O Golfinho: inteligência social, afeto e harmonia.", C: "O Leão: soberania, ação e proteção do território.", D: "O Lobo: lealdade, intuição e profundidade solitária." } },
+                { q: "O que sente quando alguém brilha mais que você?", o: { A: "Analiso as técnicas dessa pessoa para ver o que posso aprender.", B: "Fico genuinamente feliz se for alguém de quem eu gosto.", C: "Sinto um impulso competitivo de me superar e brilhar também.", D: "Não me afeta; o meu valor não depende de comparação externa." } },
+                { q: "Numa discussão, prefere:", o: { A: "Ter a razão baseada em factos e evidências inquestionáveis.", B: "Chegar a um acordo onde ninguém saia magoado.", C: "Encerrar o assunto com uma decisão prática e final.", D: "Entender as motivações psicológicas de quem está a discutir." } },
+                { q: "O que o(a) faz chorar?", o: { A: "O sentimento de impotência perante a ignorância ou o caos.", B: "Ver o sofrimento de um inocente ou a perda de um elo.", C: "A frustração extrema de não conseguir realizar algo importante.", D: "A beleza de algo muito profundo ou a dor da solidão humana." } },
+                { q: "A sua missão de vida parece estar ligada a:", o: { A: "Ensinar, organizar e iluminar caminhos intelectuais.", B: "Cuidar, nutrir e restaurar a dignidade emocional.", C: "Construir, liderar e manifestar mudanças concretas.", D: "Revelar, questionar e encontrar a verdade da alma." } }
+            ],
+
+            results: {
+                A: { 
+                    name: "O Arquiteto Sistémico", 
+                    desc: "Sua personalidade é regida pela <strong>necessidade de ordem e lucidez intelectual</strong>. Você utiliza a razão como um escudo contra o caos emocional do mundo. No entanto, essa busca por controle pode gerar um distanciamento das suas próprias necessidades afetivas, criando uma sensação de isolamento, mesmo acompanhado.<br><br><strong>Dinâmica Psicológica:</strong> Você tende a racionalizar traumas e sentimentos em vez de senti-los. Isso protege sua mente, mas sobrecarrega seu corpo com tensões não resolvidas.",
+                    homework: `
+                        <h4 class='font-bold text-xl mb-3'>Dever de Casa: O Despertar Sensorial</h4>
+                        <ol class='list-decimal ml-5 space-y-3'>
+                            <li><strong>3 Dias de 'Não-Lógica':</strong> Durante 15 minutos ao dia, ouça música instrumental sem tentar analisar a estrutura técnica, apenas foque no que ela faz seu corpo sentir (calor, arrepio, peso).</li>
+                            <li><strong>Diário das Emoções Primárias:</strong> Antes de dormir, anote 3 sentimentos que teve no dia sem usar palavras técnicas ou lógicas. Use apenas: 'Triste', 'Alegre', 'Assustado' ou 'Raiva'.</li>
+                            <li><strong>Toque Consciente:</strong> Pratique uma automassagem nos pés ou mãos focando 100% na textura da pele.</li>
+                        </ol>
+                        <div class='mt-4 p-4 bg-purple-100 rounded-xl'>
+                            <strong>Benefícios:</strong> Redução da ansiedade crônica, melhora na qualidade do sono e maior conexão íntima com parceiros e amigos ao 'baixar a guarda' intelectual.
+                        </div>`
+                },
+                B: { 
+                    name: "O Nutritivo Empata", 
+                    desc: "Sua identidade está profundamente entrelaçada com o <strong>bem-estar alheio</strong>. Você possui um radar emocional aguçadíssimo, captando tensões no ambiente antes de qualquer um. O desafio reside no fato de que você costuma 'anular-se' para manter a paz coletiva.<br><br><strong>Dinâmica Psicológica:</strong> Há um medo subjacente de abandono que o impele a ser indispensável. Você cuida dos outros para garantir que não será deixado sozinho.",
+                    homework: `
+                        <h4 class='font-bold text-xl mb-3'>Dever de Casa: O Fortalecimento do Ego</h4>
+                        <ol class='list-decimal ml-5 space-y-3'>
+                            <li><strong>O 'Não' Sagrado:</strong> Identifique uma solicitação nesta semana que você faria apenas por obrigação e diga educadamente 'Não'. Observe a culpa e deixe-a passar sem ceder.</li>
+                            <li><strong>Encontro Solitário:</strong> Vá a um café ou cinema sozinho. O objetivo é desfrutar da sua própria companhia sem precisar cuidar de ninguém.</li>
+                            <li><strong>Espelho da Autoafirmação:</strong> Olhe-se no espelho e diga: 'Eu sou digno de amor mesmo quando não estou fazendo nada por ninguém'.</li>
+                        </ol>
+                        <div class='mt-4 p-4 bg-purple-100 rounded-xl'>
+                            <strong>Benefícios:</strong> Recuperação da energia vital, diminuição do cansaço crônico e estabelecimento de relações mais saudáveis e equilibradas (menos codependentes).
+                        </div>`
+                },
+                C: { 
+                    name: "O Realizador Dinâmico", 
+                    desc: "Você é movido pela <strong>vontade de impacto e autonomia</strong>. A inércia é sua maior inimiga e a realização sua maior droga. No entanto, você corre o risco de se tornar uma 'máquina de fazer', esquecendo-se do ser humano que habita atrás do crachá e dos resultados.<br><br><strong>Dinâmica Psicológica:</strong> Você projeta força para esconder uma vulnerabilidade que considera 'fraqueza'. O sucesso é usado como prova de valor pessoal.",
+                    homework: `
+                        <h4 class='font-bold text-xl mb-3'>Dever de Casa: A Arte da Contemplação</h4>
+                        <ol class='list-decimal ml-5 space-y-3'>
+                            <li><strong>Janela de Ociosidade:</strong> Reserve 20 minutos por dia sem celular, trabalho ou metas. Apenas sente-se e observe o movimento da rua ou o balançar das árvores.</li>
+                            <li><strong>Check-list da Alma:</strong> Ao final do dia, em vez de listar o que produziu, liste 3 momentos em que você sentiu gratidão ou paz, independente de tarefas.</li>
+                            <li><strong>Atividade de Inutilidade:</strong> Dedique-se a um hobby em que você seja 'ruim' ou que não tenha retorno financeiro (ex: desenho, jardinagem básica).</li>
+                        </ol>
+                        <div class='mt-4 p-4 bg-purple-100 rounded-xl'>
+                            <strong>Benefícios:</strong> Prevenção de Burnout, melhora na paciência com os outros e descoberta de fontes de prazer que não dependem do desempenho.
+                        </div>`
+                },
+                D: { 
+                    name: "O Buscador de Essência", 
+                    desc: "Sua vida é uma <strong>busca constante por significado</strong>. Você não aceita o superficial e mergulha fundo nas contradições humanas. O perigo é o isolamento em um mundo idealizado ou a melancolia por não encontrar a perfeição no real.<br><br><strong>Dinâmica Psicológica:</strong> Você sente que 'não pertence' totalmente ao mundo comum. Isso gera uma sensibilidade artística rica, mas também uma fragilidade social.",
+                    homework: `
+                        <h4 class='font-bold text-xl mb-3'>Dever de Casa: A Ancoragem no Real</h4>
+                        <ol class='list-decimal ml-5 space-y-3'>
+                            <li><strong>Trabalho Manual Bruto:</strong> Cozinhe uma refeição complexa do zero ou limpe um armário bagunçado. Foque na matéria física, não no pensamento.</li>
+                            <li><strong>Partilha da Sombra:</strong> Escolha uma pessoa de confiança e conte um pensamento que você considera 'estranho' ou 'profundo'. Rompa o isolamento da sua mente.</li>
+                            <li><strong>Exercício do 'Aqui e Agora':</strong> Quando se perder em devaneios sobre o futuro ou o passado, nomeie 5 coisas que você está vendo agora no quarto.</li>
+                        </ol>
+                        <div class='mt-4 p-4 bg-purple-100 rounded-xl'>
+                            <strong>Benefícios:</strong> Maior estabilidade emocional, capacidade de transformar ideias em projetos reais e redução da sensação de desajuste social.
+                        </div>`
+                }
+            },
+
+            start() {
+                document.getElementById('start-screen').classList.add('hidden');
+                document.getElementById('quiz-screen').classList.remove('hidden');
+                this.render();
+            },
+
+            render() {
+                const q = this.questions[this.step];
+                const pct = ((this.step + 1) / this.questions.length) * 100;
+                
+                document.getElementById('progress-text').innerText = `Questão ${String(this.step + 1).padStart(2, '0')}/${this.questions.length}`;
+                document.getElementById('progress-percent').innerText = `${Math.round(pct)}%`;
+                document.getElementById('progress-bar').style.width = `${pct}%`;
+                document.getElementById('question-title').innerText = q.q;
+
+                const container = document.getElementById('options-container');
+                container.innerHTML = '';
+                Object.entries(q.o).forEach(([key, val]) => {
+                    const b = document.createElement('button');
+                    b.className = 'option-btn';
+                    b.innerText = val;
+                    b.onclick = () => { this.scores[key]++; this.next(); };
+                    container.appendChild(b);
+                });
+            },
+
+            next() {
+                if (this.step < this.questions.length - 1) {
+                    this.step++;
+                    this.render();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                } else {
+                    this.finish();
+                }
+            },
+
+            finish() {
+                const winner = Object.keys(this.scores).reduce((a, b) => this.scores[a] > this.scores[b] ? a : b);
+                const res = this.results[winner];
+
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                
+                document.getElementById('result-name').innerText = res.name;
+                document.getElementById('result-text').innerHTML = res.desc;
+                document.getElementById('result-homework').innerHTML = res.homework;
+                
+                // Preparar área de captura
+                document.getElementById('cap-name').innerText = res.name;
+                document.getElementById('cap-content').innerHTML = `
+                    <div style="margin-bottom:20px;">${res.desc}</div>
+                    <div style="background:#f9f9f9; padding:20px; border-radius:10px;">${res.homework}</div>
+                `;
+            },
+
+            async download() {
+                const el = document.getElementById('capture-area');
+                el.style.left = '0';
+                const canv = await html2canvas(el);
+                const link = document.createElement('a');
+                link.download = 'meu-plano-terapeutico.png';
+                link.href = canv.toDataURL();
+                link.click();
+                el.style.left = '-9999px';
+            }
+        };
+    </script>
+</body>
+</html>
